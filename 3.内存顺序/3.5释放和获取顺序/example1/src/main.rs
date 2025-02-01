@@ -1,4 +1,4 @@
-use std::{sync::atomic::{AtomicBool, AtomicU64}, thread, time::Duration};
+use std::{sync::atomic::{AtomicBool, AtomicU64}, thread};
 use std::sync::atomic::Ordering::Relaxed;
 use std::sync::atomic::Ordering::Release;
 use std::sync::atomic::Ordering::Acquire;
@@ -11,8 +11,6 @@ fn main() {
         READY.store(true, Release);
     });
     while !READY.load(Acquire) {
-        thread::sleep(Duration::from_millis(100));
-        println!("waiting...");
+        thread::sleep
     }
-    println!("{}",DATA.load(Relaxed));
 }
